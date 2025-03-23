@@ -1,4 +1,4 @@
-FROM maven:3.8.7-openjdk-21 AS build
+FROM maven:3.8.7-openjdk-18 AS build
 
 WORKDIR /app
 
@@ -10,9 +10,9 @@ FROM openjdk:21-jdk
 
 WORKDIR /app
 
-COPY --from-build /app/target/bellMock-0.0.1-SNAPSHOT.jar /app/bellMock.jar
+COPY --from=build /app/target/bellMock-0.0.1-SNAPSHOT.jar /app/bellMock.jar
 
-COPY --from-build /app/jolokia-agent-jvm-2.2.6-javaagent.jar /app/jolokia.jar
+COPY --from=build /app/jolokia-agent-jvm-2.2.6-javaagent.jar /app/jolokia.jar
 
 EXPOSE 8080 7777
 
