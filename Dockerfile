@@ -14,6 +14,6 @@ COPY --from=build /app/target/mock-0.0.1-SNAPSHOT.jar /app/bellMock.jar
 
 COPY --from=build /app/jolokia-agent-jvm-2.2.6-javaagent.jar /app/jolokia.jar
 
-EXPOSE 8080 7777
+EXPOSE 8080 8778
 
-CMD ["java", "-javaagent:/app/jolokia.jar=port=7777,host=0.0.0.0", "-jar", "/app/bellMock.jar"]
+CMD ["java", "-javaagent:/app/jolokia.jar=port=8778,host=0.0.0.0", "-jar", "/app/bellMock.jar"]
