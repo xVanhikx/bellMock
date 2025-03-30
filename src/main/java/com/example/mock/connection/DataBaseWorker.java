@@ -2,9 +2,11 @@ package com.example.mock.connection;
 
 
 import com.example.mock.model.User;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 
+@Repository
 public class DataBaseWorker {
     private static final String URL = "jdbc:postgresql://192.168.0.129:5432/mydb";
     private static final String USER = "admin";
