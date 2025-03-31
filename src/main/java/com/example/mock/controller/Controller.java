@@ -15,8 +15,7 @@ import java.util.Date;
 @RestController
 @RequestMapping("/api")
 public class Controller {
-    @Autowired
-    private DataBaseWorker dbWorker;
+    private DataBaseWorker dbWorker = new DataBaseWorker();
     @GetMapping("/status")
     public ResponseEntity<User> getStatus(@PathVariable String login) {
         //    Thread.sleep(1000 + (long) (Math.random() * 1000));
