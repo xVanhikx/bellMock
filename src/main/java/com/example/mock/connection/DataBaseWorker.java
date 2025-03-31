@@ -2,9 +2,11 @@ package com.example.mock.connection;
 
 
 import com.example.mock.model.User;
+import org.springframework.stereotype.Component;
 
 import java.sql.*;
 
+@Component
 public class DataBaseWorker {
     private static final String URL = "jdbc:postgresql://192.168.0.129:5432/mydb";
     private static final String USER = "admin";
@@ -29,7 +31,7 @@ public class DataBaseWorker {
                         resultSet.getDate("date")
                 );
             } else {
-                throw new RuntimeException("Пользователя не существует");
+                throw new RuntimeException("Пользователя не существует"); //
             }
         } catch (SQLException e) {
             System.err.println("Ошибка при выполнении запроса: " + e.getMessage());
@@ -45,7 +47,7 @@ public class DataBaseWorker {
         return null;
     }
 
-    public int insertUser(User user) {
+    public Integer insertUser(User user) {
         String insertUserSQL = "INSERT INTO users (login, password, date) VALUES (?, ?, ?)\n" +
                                 "INSERT INTO emails (login, email) VALUES (?, ?)";
 
@@ -68,7 +70,7 @@ public class DataBaseWorker {
             return userRows;
         } catch (SQLException e) {
             System.err.println("Ошибка при вставке пользователя: " + e.getMessage());
-            return 0;
+            return null;
         }
     }
 }
