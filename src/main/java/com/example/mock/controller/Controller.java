@@ -1,11 +1,9 @@
 package com.example.mock.controller;
 
 import com.example.mock.connection.DataBaseWorker;
-import com.example.mock.exceptions.InvalidRequestException;
 import com.example.mock.exceptions.UserNotFoundException;
 import com.example.mock.model.User;
-import io.micrometer.prometheusmetrics.PrometheusConfig;
-import io.micrometer.prometheusmetrics.PrometheusMeterRegistry;
+import io.micrometer.core.instrument.MeterRegistry;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.autoconfigure.metrics.MeterRegistryCustomizer;
@@ -51,15 +49,7 @@ public class Controller {
         return "redirect:/actuator/prometheus";
     }
 
-    @Bean
-    public MeterRegistryCustomizer<PrometheusMeterRegistry> metricsCommonTags() {
-        return registry -> registry.config().commonTags("application", "bell-mock");
-    }
 
-    @Bean
-    public PrometheusMeterRegistry prometheusMeterRegistry() {
-        return new PrometheusMeterRegistry(PrometheusConfig.DEFAULT);
-    }
 
     public void timer(int time) {
         try {
