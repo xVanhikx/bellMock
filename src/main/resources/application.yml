@@ -8,7 +8,9 @@ management:
   endpoints:
     web:
       exposure:
-        include: health, prometheus, metrics
+        include: "*"
+    prometheus:
+      enabled: true
   metrics:
     export:
       prometheus:
