@@ -53,7 +53,7 @@ public class Controller {
 
     @Bean
     public MeterRegistryCustomizer<PrometheusMeterRegistry> metricsCommonTags() {
-        return registry -> registry.config().commonTags("application", "stub-service");
+        return registry -> registry.config().commonTags("application", "bell-mock");
     }
 
     @Bean
