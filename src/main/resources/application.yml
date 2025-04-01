@@ -5,7 +5,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: health, prometheus
+        include: health, prometheus, metrics
   metrics:
     export:
       prometheus:
