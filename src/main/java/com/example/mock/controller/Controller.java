@@ -1,5 +1,6 @@
 package com.example.mock.controller;
 
+import com.example.mock.IO.FileWorker;
 import com.example.mock.connection.DataBaseWorker;
 import com.example.mock.exceptions.UserNotFoundException;
 import com.example.mock.model.User;
@@ -12,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -20,11 +22,15 @@ import java.util.Date;
 public class Controller {
     @Autowired
     private DataBaseWorker dbWorker;
+    static {
+        FileWorker.generateRandomDataFile();
+    }
     @GetMapping("/status")
     public ResponseEntity<String> getStatus(@PathVariable String login) {
         timer(100);
         try {
             User user = dbWorker.getUserByLogin(login);
+            FileWorker.writeEntityToFile(user);
             return ResponseEntity.ok(user.toString());
         } catch (UserNotFoundException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage()); //
@@ -42,6 +48,17 @@ public class Controller {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(user); //
         }
 
+    }
+
+    @GetMapping("/random")
+    public String getRandomLine() {
+        String str = null;
+        try {
+            str = FileWorker.readRandomLineFromFile();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        return str;
     }
 
     @GetMapping("/prometheus")
