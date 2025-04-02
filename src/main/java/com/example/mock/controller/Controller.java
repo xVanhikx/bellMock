@@ -17,7 +17,7 @@ import java.util.Date;
 public class Controller {
     @Autowired
     private DataBaseWorker dbWorker;
-    @GetMapping("/status")
+    @GetMapping("/status/{login}")
     public ResponseEntity<String> getStatus(@PathVariable String login) {
         timer(100);
         try {
