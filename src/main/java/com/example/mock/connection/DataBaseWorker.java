@@ -1,6 +1,7 @@
 package com.example.mock.connection;
 
 
+import com.example.mock.exceptions.UserNotFoundException;
 import com.example.mock.model.User;
 import org.springframework.stereotype.Component;
 
@@ -8,7 +9,7 @@ import java.sql.*;
 
 @Component
 public class DataBaseWorker {
-    private static final String URL = "jdbc:postgresql://172.17.0.1:5432/mydb";
+    private static final String URL = "jdbc:postgresql://127.0.0.1:5432/mydb";
     private static final String USER = "admin";
     private static final String PASSWORD = "admin";
 
@@ -31,7 +32,7 @@ public class DataBaseWorker {
                         resultSet.getDate("date")
                 );
             } else {
-                throw new RuntimeException("Пользователя не существует"); //
+                throw new UserNotFoundException();
             }
         } catch (SQLException e) {
             System.err.println("Ошибка при выполнении запроса: " + e.getMessage());
