@@ -4,10 +4,6 @@ import com.example.mock.model.User;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.time.LocalDate;
-import java.util.List;
 import java.util.Random;
 
 @Component
@@ -31,7 +27,7 @@ public class FileWorker {
         try (BufferedReader reader = new BufferedReader(new FileReader(RANDOM_DATA_FILE))) {
             int lineNumber = (random.nextInt(10) + 1);
                 str = reader.lines()
-                        .skip(lineNumber - 1)
+                        .skip(lineNumber)
                         .findFirst()
                         .orElse(null);
 
