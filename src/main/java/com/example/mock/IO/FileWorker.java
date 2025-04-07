@@ -17,14 +17,9 @@ public class FileWorker {
     private static final Random random = new Random();
 
     public void writeEntityToFile(User user) {
-        String json = "{" +
-                "\"login\":\"" + user.getLogin() + "\"," +
-                "\"password\":\"" + user.getPassword() + "\"," +
-                "\"email\":\"" + user.getEmail() + "\"," +
-                "\"registrationDate\":\"" + user.getRegistrationDate() + "\"" + ///
-                "}";
+        String str = user.toString();
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(OUTPUT_FILE, true))) {
-            writer.write(json);
+            writer.write(str);
             writer.newLine();
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -34,9 +29,12 @@ public class FileWorker {
     public String readRandomLineFromFile() throws IOException {
         String str = null;
         try (BufferedReader reader = new BufferedReader(new FileReader(RANDOM_DATA_FILE))) {
-            for (int i = 0; i <= (random.nextInt(10) + 1); i++) {
-                str = reader.readLine();
-            }
+            int lineNumber = (random.nextInt(10) + 1);
+                str = reader.lines()
+                        .skip(lineNumber - 1)
+                        .findFirst()
+                        .orElse(null);
+
 
         } catch (IOException e) {
             System.out.println(e.getMessage());

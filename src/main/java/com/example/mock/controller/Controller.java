@@ -29,7 +29,7 @@ public class Controller {
             fileWorker.writeEntityToFile(user);
             return ResponseEntity.ok(user.toString());
         } catch (UserNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage()); //
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 
@@ -41,7 +41,7 @@ public class Controller {
         if (answer > 0) {
             return ResponseEntity.ok(user);
         } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(user); //
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(user);
         }
 
     }
