@@ -1,6 +1,6 @@
 package com.example.mock.controller;
 
-import com.example.mock.connection.DataBaseWorker;
+import com.example.mock.workers.DataBaseWorker;
 import com.example.mock.exceptions.UserNotFoundException;
 import com.example.mock.model.User;
 import jakarta.validation.Valid;
@@ -8,9 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @RestController
 @RequestMapping("/api")
