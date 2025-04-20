@@ -1,7 +1,7 @@
 package com.example.mock.controller;
 
-import com.example.mock.IO.FileWorker;
-import com.example.mock.connection.DataBaseWorker;
+import com.example.mock.workers.FileWorker;
+import com.example.mock.workers.DataBaseWorker;
 import com.example.mock.exceptions.UserNotFoundException;
 import com.example.mock.model.User;
 import jakarta.validation.Valid;

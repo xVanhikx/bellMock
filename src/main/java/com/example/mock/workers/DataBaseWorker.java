@@ -1,4 +1,4 @@
-package com.example.mock.connection;
+package com.example.mock.workers;
 
 
 import com.example.mock.model.User;

@@ -1,4 +1,4 @@
-package com.example.mock.IO;
+package com.example.mock.workers;
 
 import com.example.mock.model.User;
 import org.springframework.stereotype.Component;
